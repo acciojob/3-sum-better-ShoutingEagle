@@ -23,7 +23,7 @@ function threeSum(arr, target) {
             }
         }
         arr2.sort();
-        console.log(arr2[0]);
+        return arr2[0];
        
   
 }
