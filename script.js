@@ -1,30 +1,31 @@
-function threeSum(arr, target) {
+function threeSum(nums, target) {
 // write your code here
-	let arr2 = [];
-        let count = 0;
-        for(let i=0;i<arr.length-2;i++){
-            for(let j=i+1;j<arr.length-1;j++){
-                for(let k=j+1;k<arr.length;k++){
-                    arr2[count] = arr[i]+arr[j]+arr[k];
-                    count++;
-                }
-            }
+	 nums.sort((a, b) => a - b);
+  
+    let closestSum = Infinity;
+  
+    for (let i = 0; i < nums.length - 2; i++) {
+      let left = i + 1;
+      let right = nums.length - 1;
+  
+      while (left < right) {
+        const sum = nums[i] + nums[left] + nums[right];
+  
+        if (Math.abs(sum - target) < Math.abs(closestSum - target)) {
+          closestSum = sum;
         }
-
-        
-
-        
-        
-        for(let i=0;i<arr2.length;i++){
-            if(arr2[i]<0){
-                let temp = arr2[i];
-                arr2[i] = (-1) * temp;
-                arr2[i] = arr2[i]+target;
-            }
+  
+        if (sum < target) {
+          left++;
+        } else if (sum > target) {
+          right--;
+        } else {
+          return target; // Exact match found, return target
         }
-        arr2.sort();
-        return arr2[0];
-       
+      }
+    }
+  
+    return closestSum;
   
 }
 
